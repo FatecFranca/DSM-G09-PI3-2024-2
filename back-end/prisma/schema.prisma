@@ -5,43 +5,75 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mongodb"
-    url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model Usuario {
-    id              String      @id @default(auto()) @map("_id") @db.ObjectId
-    user            String
-    password        String
-    email           String
-    data_nascimento DateTime
-    Categoria       Categoria[]
-    Transacao       Transacao[]
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  user            String
+  password        String
+  email           String
+  data_nascimento DateTime
+  Categoria       Categoria[]
+  Transacao       Transacao[]
+
+  Grupo Grupo[]
+
+  UsuariosGrupo UsuariosGrupo[]
 }
 
 model Categoria {
-    id             String      @id @default(auto()) @map("_id") @db.ObjectId
-    descricao      String
-    ativo          Boolean
-    tipo_transacao String
-    usuario_id     String      @db.ObjectId
-    usuario        Usuario     @relation(fields: [usuario_id], references: [id])
-    Transacao      Transacao[]
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  descricao      String
+  ativo          Boolean
+  tipo_transacao String
+  usuario_id     String      @db.ObjectId
+  usuario        Usuario     @relation(fields: [usuario_id], references: [id])
+  Transacao      Transacao[]
 }
 
 model Transacao {
-    id               String    @id @default(auto()) @map("_id") @db.ObjectId
-    valor            BigInt
-    descricao        String?
-    data             DateTime
-    metodo_pagamento String?
-    tipo_transacao   String?
-    usuario_id       String    @db.ObjectId
-    usuario          Usuario   @relation(fields: [usuario_id], references: [id])
-    categoria_id     String    @db.ObjectId
-    categoria        Categoria @relation(fields: [categoria_id], references: [id])
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  valor            BigInt
+  descricao        String?
+  data             DateTime
+  metodo_pagamento String?
+  tipo_transacao   String?
+  usuario_id       String    @db.ObjectId
+  usuario          Usuario   @relation(fields: [usuario_id], references: [id])
+  categoria_id     String    @db.ObjectId
+  categoria        Categoria @relation(fields: [categoria_id], references: [id])
+}
+
+model Grupo {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  nome          String
+  descricao     String
+  usuario_id    String          @db.ObjectId
+  usuario       Usuario         @relation(fields: [usuario_id], references: [id])
+  UsuariosGrupo UsuariosGrupo[]
+}
+
+model UsuariosGrupo {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  usuario    Usuario @relation(fields: [usuario_id], references: [id])
+  usuario_id String  @db.ObjectId
+  grupo      Grupo   @relation(fields: [grupo_id], references: [id])
+  grupo_id   String  @db.ObjectId
+
+  @@unique([usuario_id, grupo_id])
+}
+
+model Noticia {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  titulo       String
+  sub_titulo   String
+  texto_notici String
+  imagem       String
+  data_noticia DateTime @default(now())
 }
