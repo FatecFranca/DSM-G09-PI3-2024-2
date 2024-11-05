@@ -31,7 +31,7 @@ model Categoria {
   id             String      @id @default(auto()) @map("_id") @db.ObjectId
   descricao      String
   ativo          Boolean
-  tipo_transacao String
+  tipo_transacao String?
   usuario_id     String      @db.ObjectId
   usuario        Usuario     @relation(fields: [usuario_id], references: [id])
   Transacao      Transacao[]

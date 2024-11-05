@@ -4,7 +4,8 @@ import logger from 'morgan'
 
 import authenticateRouter from "./routes/authenticate.js";
 import noticiaRouter from './routes/noticia.js';
-
+import transacaoRouter from './routes/transacao.js';
+import categoriaRouter from './routes/categoria.js';
 
 const app = express()
 
@@ -15,5 +16,7 @@ app.use(cookieParser());
 
 app.use('/', authenticateRouter);
 app.use('/noticia', noticiaRouter);
+app.use('/transacao', transacaoRouter);
+app.use('/categoria', categoriaRouter);
 
 export default app
