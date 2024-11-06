@@ -39,7 +39,7 @@ model Categoria {
 
 model Transacao {
   id               String    @id @default(auto()) @map("_id") @db.ObjectId
-  valor            BigInt
+  valor            Float
   descricao        String?
   data             DateTime
   metodo_pagamento String?
