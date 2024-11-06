@@ -1,0 +1,44 @@
+.carousel {
+    width: 100%; 
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-track {
+    display: flex;
+    width: calc(30% * 4);
+    justify-content: center;
+    animation: scroll 350s infinite linear; 
+}
+
+.carousel-item {
+    width: 100%; 
+    flex: 1 0 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(-200%);
+    }
+    75% {
+        transform: translateX(-300%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
