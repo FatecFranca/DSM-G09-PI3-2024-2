@@ -70,10 +70,10 @@ model UsuariosGrupo {
 }
 
 model Noticia {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  titulo       String
-  sub_titulo   String
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  titulo        String
+  sub_titulo    String
   texto_noticia String
-  imagem       String
-  data_noticia DateTime @default(now())
+  imagem        String
+  data_noticia  DateTime @default(now())
 }
