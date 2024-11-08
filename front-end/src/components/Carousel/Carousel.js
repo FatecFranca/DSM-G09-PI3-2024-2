@@ -2,10 +2,11 @@ import React from 'react';
 import './Carousel.css';
 
 const images = [
-  require('../images/img4.jpg'),
-  require('../images/img5.jpg'),
-  require('../images/img6.jpg'),
+  require('../../assets/images/img4.jpg'),
+  require('../../assets/images/img5.jpg'),
+  require('../../assets/images/img6.jpg'),
 ];
+
 
 function Carousel() {
   const extendedImages = [...images, images[0]];

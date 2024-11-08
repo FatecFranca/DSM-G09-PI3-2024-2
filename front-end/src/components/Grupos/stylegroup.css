@@ -1,0 +1,11 @@
+.headerGroup{
+    margin-inline: 10rem;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content-group{
+    display: -webkit-box;
+    margin-block-start: 10rem;
+    margin-inline: 10rem;
+}

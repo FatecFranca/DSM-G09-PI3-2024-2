@@ -11,53 +11,7 @@ body {
   background-color: #ffffff;
 }
 
-/* Menu lateral */
-.sidebar {
-  width: 80px;
-  background-color: #F3E9FF;
-  color: #333;
-  padding: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  height: 100%;
-}
 
-.sidebar .menu-icon {
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.sidebar .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.sidebar .profile img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  width: 100%;
-  text-align: center;
-}
-
-.sidebar nav ul li {
-  padding: 15px 0;
-  cursor: pointer;
-  color: #333;
-}
-
-.sidebar nav ul li i {
-  margin-right: 10px;
-}
 
 /* Conteúdo principal */
 .main-content{
@@ -231,28 +185,3 @@ body {
   color: #777;
 }
 
-.menu-list {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.menu-list li {
-  text-align: center;
-  margin-bottom: 20px; /* Espaçamento entre os itens */
-  color: #333;
-  font-family: 'Poppins', sans-serif;
-}
-
-.menu-icon {
-  display: block;
-  margin-bottom: 8px; /* Espaçamento entre o ícone e o texto */
-  width: 24px; /* Tamanho do ícone */
-  height: 24px;
-}
-
-.menu-list li:hover .menu-icon {
-  filter: brightness(0.8); /* Efeito para escurecer o ícone ao passar o mouse */
-}

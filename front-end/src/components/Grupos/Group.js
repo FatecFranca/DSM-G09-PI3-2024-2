@@ -1,14 +1,35 @@
-import React from 'react';
-import './styleboard.css';
+import React, { useState } from 'react';
+import './stylegroup.css';
 
-const Dashboard = () => {
+const Grupos = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+    const toggleSidebar = () => {
+      setIsSidebarOpen(prevState => !prevState);
+    };
   return (
-    <div className="dashboard">
-      {/* Menu Lateral */}
-      <aside className="sidebar">
-        <div className="menu-icon">☰</div>
+    <div className="group">
+        <div className="menu-icon" onClick={toggleSidebar}>☰</div>
+        <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
         <ul class="menu-list">
+          <li className="menu-adicionar">
+          <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g filter="url(#filter0_d_145_491)">
+          <rect x="4" width="45" height="44" rx="22" fill="#274156"/>
+          <path d="M28.2578 13.9219C28.2578 13.5116 28.0911 13.1182 27.7944 12.8281C27.4978 12.538 27.0954 12.375 26.6758 12.375C26.2562 12.375 25.8538 12.538 25.5571 12.8281C25.2604 13.1182 25.0938 13.5116 25.0938 13.9219V20.625H18.2383C17.8187 20.625 17.4163 20.788 17.1196 21.0781C16.8229 21.3682 16.6562 21.7616 16.6562 22.1719C16.6562 22.5821 16.8229 22.9756 17.1196 23.2657C17.4163 23.5558 17.8187 23.7188 18.2383 23.7188H25.0938V30.4219C25.0938 30.8321 25.2604 31.2256 25.5571 31.5157C25.8538 31.8058 26.2562 31.9688 26.6758 31.9688C27.0954 31.9688 27.4978 31.8058 27.7944 31.5157C28.0911 31.2256 28.2578 30.8321 28.2578 30.4219V23.7188H35.1133C35.5329 23.7188 35.9353 23.5558 36.2319 23.2657C36.5286 22.9756 36.6953 22.5821 36.6953 22.1719C36.6953 21.7616 36.5286 21.3682 36.2319 21.0781C35.9353 20.788 35.5329 20.625 35.1133 20.625H28.2578V13.9219Z" fill="#ECF3FB"/>
+          </g><defs>
+          <filter id="filter0_d_145_491" x="0" y="0" width="53" height="53" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="5"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_145_491"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_145_491" result="shape"/>
+          </filter></defs></svg>
+          </li>
           <li class="menu-item receita">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="13" cy="13" r="13" fill="#12A454"/>
@@ -38,7 +59,7 @@ const Dashboard = () => {
           </filter>
           </defs>
           </svg>Grupos</li>
-          <li class="menu-item fechar">
+          <li class="menu-item fechar" onClick={toggleSidebar}>
           <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_478)">
           <rect x="4" width="26" height="26" rx="13" fill="#274156"/>
@@ -60,95 +81,37 @@ const Dashboard = () => {
         </ul>
         </nav>
       </aside>
-
-      {/* Conteúdo Principal */}
-      <main className="content">
-        {/* Área Principal */}
-        <div className="main-content">
-          <header className="header">
-            <div className="profile">
-              <h2>Caio Rian</h2>
+      <div className="headerGroup">
+        <h1>Grupos</h1>
+        <p>Crie grupos, entre em grupos e descubra uma nova possibilidade de controle de finanças em conjunto.</p>
+        <button className="btn-criar">Criar grupo</button>
+        <button className="btn-config">⚙️</button>
+      </div>
+      <div className="main-content-group">
+        <div className="groups">
+          <h2>Meus grupos</h2>
+          <div className="group-list">
+            <div className="group-item">
+              <h3>Familia</h3>
+              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
             </div>
-            <div className="header-icons">
-              <i className="fas fa-eye"></i>
-              <i className="fas fa-cog"></i>
+            <div className="group-item">
+              <h3>Trabalho</h3>
+              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
             </div>
-          </header>
-
-          {/* Saldo */}
-          <div className="balance">
-            <div className="balance-info">
-              <h3>Saldo atual</h3>
-              <span>R$ 204,00</span>
+            <div className="group-item">
+              <h3>Amigos</h3>
+              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
             </div>
-            <div className="balance-info">
-              <h3>Saldo previsto</h3>
-              <span>R$ 124,00</span>
-            </div>
-          </div>
-
-          {/* Cartões de Despesas e Receitas */}
-          <div className="cards">
-            <div className="card red">
-              <h4>Despesas</h4>
-              <span className="amount red">R$ 543,50</span>
-              <ul>
-                <li>Mercado: R$ 32,00</li>
-                <li>Luz: R$ 80,00</li>
-                <li>Aluguel: R$ 105,50</li>
-              </ul>
-            </div>
-            <div className="card green">
-              <h4>Receitas</h4>
-              <span className="amount green">R$ 1020,50</span>
-              <ul>
-                <li>Salário: R$ 750,00</li>
-                <li>Freelance: R$ 270,50</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Planejamento */}
-          <div className="planning">
-            <h4>Planejamento</h4>
-            <div className="bar-container">
-              <div className="bar">
-                <span>Educação</span>
-                <div className="progress red" style={{ width: '85%' }}></div>
-              </div>
-              <div className="bar">
-                <span>Lazer</span>
-                <div className="progress orange" style={{ width: '70%' }}></div>
-              </div>
-              <div className="bar">
-                <span>Alimentação</span>
-                <div className="progress blue" style={{ width: '50%' }}></div>
-              </div>
+            <div className="group-item">
+              <h3>Viagens</h3>
+              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
             </div>
           </div>
         </div>
-
-        {/* Cards de Notícias à direita */}
-        <div className="news-cards-container">
-          <div className="news-card">
-            <img src="news1.jpg" alt="Notícia" />
-            <div className="news-card-content">
-              <h5>Notícia financeira exemplo</h5>
-              <p>Craig Bator - 27 Dec 2020</p>
-            </div>
-          </div>
-          <div className="news-card">
-            <img src="news2.jpg" alt="Notícia" />
-            <div className="news-card-content">
-              <h5>Notícia financeira exemplo</h5>
-              <p>Craig Bator - 27 Dec 2020</p>
-            </div>
-          </div>
-          {/* Adicione mais cards conforme necessário */}
-        </div>
-      </main>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Grupos;

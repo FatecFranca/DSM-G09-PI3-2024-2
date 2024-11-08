@@ -1,6 +1,6 @@
 import React from 'react';
 import './FormStyles.css';
-import Carousel from './Carousel'; 
+import Carousel from '../Carousel/Carousel'; 
 
 const Login = () => {
   return (
