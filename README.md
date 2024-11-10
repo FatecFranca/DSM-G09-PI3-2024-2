@@ -3,8 +3,6 @@ Repositório do GRUPO 09 do Projeto Interdisciplinar do 3º semestre DSM 2024/2.
 <br>
 <hr>
 
-## Ferramentas de Acompanhamento do Projeto
+## Ferramentas para Acompanhamento do Projeto
 
-- Gestão Ágil de Projetos | Alessandro: <a href="https://www.notion.so/Documenta-o-P-I-3-Semestre-3f57df41719f43ef9a11433c8e25fbb7"> Documentação do PI 3º Semestre </a>
-
-<!-- - Jira -->
+- Toda documentação, com detalhes do nosso projeto, o app web 'FINTRACK': <a href="https://strong-streetcar-24e.notion.site/f7d9ff8ce65c4ffda2b619bd105c7994?v=2d819ff1586448e4947e6e15b85390b5"> Acesso ao briefing e à documentação scrum </a> 
