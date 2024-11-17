@@ -1,11 +1,44 @@
 .headerGroup{
-    margin-inline: 10rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    margin-inline: 10rem;
 }
 
 .main-content-group{
     display: -webkit-box;
     margin-block-start: 10rem;
     margin-inline: 10rem;
+}
+
+.headerContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerContent, p{
+    margin: 0;
+    width: 80rem;
+}
+
+.group-item{
+    margin-bottom: 1.5rem;
+}
+
+.Groupbutton{
+    width: 10rem;
+    padding: 12px;
+    background-color: #6ec184;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-inline: 0.2rem;
+    margin-top: 2.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1{
+    margin-top: 2rem;
 }

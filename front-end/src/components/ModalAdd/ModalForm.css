@@ -1,0 +1,45 @@
+/* ModalForm.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.close-button {
+  margin-top: 5px;
+  background-color: #e83f5b;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.confirm-button{
+  padding: 12px;
+  background-color: #6ec184;
+}
+
+.confirm-button, .close-button{
+  width: 100%;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-inline: 0.2rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}

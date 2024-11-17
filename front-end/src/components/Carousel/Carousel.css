@@ -1,15 +1,15 @@
 .carousel {
     width: 100%; 
+    height: 100%;
     max-width: 100%;
     overflow: hidden;
     margin: 0 auto;
-    border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-track {
     display: flex;
-    width: calc(30% * 4);
+    width: calc(40% * 4);
     justify-content: center;
     animation: scroll 350s infinite linear; 
 }

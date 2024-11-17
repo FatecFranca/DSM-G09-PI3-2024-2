@@ -1,29 +1,33 @@
-*{
-  font-family: serif;
-}
-
-.container {
+.containerForm {
     display: flex;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
   }
   
   .left {
     flex: 1;
+    height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+  }
+
+  form{
+    margin-top: 2rem;
   }
   
   .image {
-    width: 80%;
+    width: 100%;
+    height: 100%;
   }
   
   .right {
     flex: 1;
     padding: 2rem;
+    width: 60%;
+    height: 100%;
   }
   
   h2 {
@@ -51,7 +55,7 @@
     border-bottom: 1px solid gray;
     }
   
-  button {
+  .submit-btn {
     width: 100%;
     padding: 12px;
     background-color: #6ec184;
@@ -59,7 +63,7 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    margin-inline: 0.8rem;
+    margin-inline: 0.2rem;
     margin-top: 2.5rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }

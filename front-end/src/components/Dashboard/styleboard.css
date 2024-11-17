@@ -5,10 +5,9 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
   display: flex;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #F7F7F7;
 }
 
 
@@ -19,15 +18,15 @@ body {
 }
 
 .content {
-  margin-left: 80px;
-  padding: 20px;
-  width: 200%;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  flex-grow: 1;
-  background-color: #fff;
-  gap: 20px;
+    padding: 20px;
+    margin-left: 6rem;
+    width: 80rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-grow: 1;
+    background-color: #F7F7F7;
+    gap: 20px;
 }
 
 .header {
@@ -162,6 +161,8 @@ body {
   background-color: #f9f9f9;
   padding: 15px;
   margin-top: 2rem;
+  margin-left: 8rem;
+  width: 20rem;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   align-items: center;
@@ -185,3 +186,6 @@ body {
   color: #777;
 }
 
+.news-card-content{
+  width: 25%;
+}

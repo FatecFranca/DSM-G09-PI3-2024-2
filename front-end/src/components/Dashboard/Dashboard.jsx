@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ModalForm from '../ModalAdd/ModalAdd';
+import ModalGraph from '../ModalGraphs/ModalRec'; 
+import ModalGraphDesp from '../ModalGraphs/ModalDesp';
 import './styleboard.css';
-import '../../globalCSS/sideMenu.css'
+import '../../globalCSS/sideMenu.css';
+
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
+  const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);
   };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openGraphModal = () => {
+    setIsGraphModalOpen(true);
+  };
+
+  const closeGraphModal = () => {
+    setIsGraphModalOpen(false);
+  };
+
+  const openGraphModalDesp = () => {
+    setIsGraphModalDespOpen(true);
+  }
+
+  const closeGraphModalDesp = () => {
+    setIsGraphModalDespOpen(false);
+  };
+
   return (
     <div className="dashboard">
       {/* Menu Lateral */}
@@ -16,7 +48,7 @@ const Dashboard = () => {
         <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
         <ul class="menu-list">
-          <li className="menu-adicionar">
+          <li className="menu-adicionar" onClick={() => openModal('add')}>
           <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_491)">
           <rect x="4" width="45" height="44" rx="22" fill="#274156"/>
@@ -33,12 +65,12 @@ const Dashboard = () => {
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_145_491" result="shape"/>
           </filter></defs></svg>
           </li>
-          <li class="menu-item receita">
+          <li class="menu-item receita" onClick={openGraphModal}>
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="13" cy="13" r="13" fill="#12A454"/>
           <path d="M11.0126 20.3876H16.2626M11.0126 17.7626H16.2626M11.0126 12.5126H7.87481C7.70178 12.5125 7.53265 12.4612 7.38879 12.365C7.24493 12.2689 7.13281 12.1322 7.0666 11.9724C7.00038 11.8125 6.98306 11.6366 7.0168 11.4669C7.05055 11.2972 7.13386 11.1413 7.25619 11.0189L13.0189 5.25619C13.183 5.09215 13.4055 5 13.6376 5C13.8696 5 14.0921 5.09215 14.2562 5.25619L20.0189 11.0189C20.1413 11.1413 20.2246 11.2972 20.2583 11.4669C20.2921 11.6366 20.2747 11.8125 20.2085 11.9724C20.1423 12.1322 20.0302 12.2689 19.8863 12.365C19.7425 12.4612 19.5733 12.5125 19.4003 12.5126H16.2626V15.1376H11.0126V12.5126Z" stroke="#ECF3FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>Receita</li>
-          <li class="menu-item despesa">
+          <li class="menu-item despesa" onClick={openGraphModalDesp}>
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="13" cy="13" r="13" fill="#E83F5B"/>
           <path d="M11.0126 5.61244H16.2626M11.0126 8.23744H16.2626M11.0126 13.4874H7.87481C7.70178 13.4875 7.53265 13.5388 7.38879 13.635C7.24493 13.7311 7.13281 13.8678 7.0666 14.0276C7.00038 14.1875 6.98306 14.3634 7.0168 14.5331C7.05055 14.7028 7.13386 14.8587 7.25619 14.9811L13.0189 20.7438C13.183 20.9078 13.4055 21 13.6376 21C13.8696 21 14.0921 20.9078 14.2562 20.7438L20.0189 14.9811C20.1413 14.8587 20.2246 14.7028 20.2583 14.5331C20.2921 14.3634 20.2747 14.1875 20.2085 14.0276C20.1423 13.8678 20.0302 13.7311 19.8863 13.635C19.7425 13.5388 19.5733 13.4875 19.4003 13.4874H16.2626V10.8624H11.0126V13.4874Z" stroke="#ECF3FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -172,6 +204,9 @@ const Dashboard = () => {
           {/* Adicione mais cards conforme necessário */}
         </div>
       </main>
+      <ModalGraphDesp isOpen={isGraphModalDespOpen} closeModal={closeGraphModalDesp} />
+      <ModalGraph isOpen={isGraphModalOpen} closeModal={closeGraphModal} />
+      <ModalForm isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };

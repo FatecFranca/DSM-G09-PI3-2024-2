@@ -4,7 +4,7 @@ import Carousel from '../Carousel/Carousel';
 
 const Register = () => {
   return (
-    <div className="container">
+    <div className="containerForm">
       <div className="left">
         <Carousel />
       </div>

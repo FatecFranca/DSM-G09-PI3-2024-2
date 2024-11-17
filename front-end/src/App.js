@@ -4,6 +4,7 @@ import Register from './components/Form/Register';
 import Login from './components/Form/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 import Grupos from './components/Grupos/Group';
+import './globalCSS/GlobalStyle'
 
 function App() {
   return (
