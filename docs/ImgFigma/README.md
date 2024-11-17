@@ -1,4 +1,4 @@
-# Figma: Projeto Integrador 3º Semestre
+# Figma: Projeto Interdisciplinar 3º Semestre
 Link do Figma
 
 [Projeto Figma](https://www.figma.com/design/rCAw8aAaJuThU6ApiPtMdJ/PI-3%C2%BASemestre?node-id=0-1&node-type=canvas&t=SGybYySsFd72J9bd-0)
