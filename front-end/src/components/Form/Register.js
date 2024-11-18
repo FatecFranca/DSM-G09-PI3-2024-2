@@ -21,11 +21,15 @@ const Register = () => {
             <input type="text" placeholder="Entre com um usuário" required />
           </div>
           <div className="input-group">
-            <label>Password</label>
+            <label>Confirme a senha</label>
+            <input type="date" placeholder="Informe a data de nascimento" required />
+          </div>
+          <div className="input-group">
+            <label>Senha</label>
             <input type="password" placeholder="Informe uma senha" required />
           </div>
           <div className="input-group">
-            <label>Confirme Password</label>
+            <label>Confirme a senha</label>
             <input type="password" placeholder="Confirme a senha" required />
           </div>
           <button type="submit" className="submit-btn">Register</button>

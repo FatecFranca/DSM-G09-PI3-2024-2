@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   const openGraphModalDesp = () => {
     setIsGraphModalDespOpen(true);
-  }
+  };
 
   const closeGraphModalDesp = () => {
     setIsGraphModalDespOpen(false);
@@ -166,6 +166,7 @@ const Dashboard = () => {
           </div>
 
           {/* Planejamento */}
+          <Link to="/Financeiro">
           <div className="planning">
             <h4>Planejamento</h4>
             <div className="bar-container">
@@ -183,6 +184,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          </Link>
         </div>
 
         {/* Cards de Notícias à direita */}

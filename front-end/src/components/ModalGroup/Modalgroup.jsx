@@ -1,36 +1,22 @@
 // ModalForm.js
 import React from 'react';
-import './ModalForm.css';
+import '../ModalAdd/ModalForm.css';
 
-const ModalForm = ({ isOpen, onClose }) => {
+const ModalGroup = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>Adicionar Item</h2>
+        <h2>Adicionar Grupo</h2>
         <form>
           <label>
-            Valor:
+            Nome:
             <input type="text" name="name" />
           </label>
           <label>
             Descrição:
             <input type="text" name="description" />
-          </label>
-          <label>
-            Data:
-            <input type="date" name="description" />
-          </label>
-          <label>
-            Categoria:
-            <input list="categorias" name="description" />
-            <datalist id="categorias">
-            <option value="Maçã"></option>
-            <option value="Banana"></option>
-            <option value="Laranja"></option>
-            <option value="Morango"></option>
-            </datalist>
           </label>
           <button className="confirm-button" type="submit">Salvar</button>
         </form>
@@ -40,4 +26,4 @@ const ModalForm = ({ isOpen, onClose }) => {
   );
 };
 
-export default ModalForm;
+export default ModalGroup;
