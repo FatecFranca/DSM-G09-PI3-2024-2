@@ -127,20 +127,37 @@ controller.delete = async (req, res) => {
 controller.getReceitasByMonths = async (req, res) => {
     try {
         const { months } = req.body;
+        if (!Array.isArray(months) || months.length === 0) {
+            return res.status(400).json({ error: 'Meses inválidos ou ausentes.' });
+        }
+        const filters = months.map((month) => {
+            const [year, monthNumber] = month.split('-');
+            const startDate = new Date(`${year}-${monthNumber}-01T00:00:00.000Z`);
+            const endDate = new Date(startDate);
+            endDate.setMonth(endDate.getMonth() + 1);
+
+            return {
+                data: {
+                    gte: startDate,
+                    lt: endDate,
+                },
+            };
+        });
         const receitas = await prisma.transacao.findMany({
             where: {
-                tipo_transacao: 'Receita',
-                AND: months.map((month) => ({
-                    data: {
-                        gte: new Date(`${month}-01`),
-                        lt: new Date(`${month}-31`),
+                OR: [
+                    { tipo_transacao: 'Receita' },
+                    {
+                        categoria: {
+                            tipo_transacao: 'Receita',
+                        },
                     },
-                })),
+                ],
             },
         });
         const valoresPorMes = months.map((month) => {
             const total = receitas
-                .filter((r) => r.data.toISOString().includes(month))
+                .filter((r) => r.data.toISOString().startsWith(month))
                 .reduce((sum, r) => sum + r.valor, 0);
             return total;
         });
@@ -150,5 +167,50 @@ controller.getReceitasByMonths = async (req, res) => {
         res.status(500).send(err.message);
     }
 };
+
+controller.getDespesaByMonths = async (req, res) => {
+    try {
+        const { months } = req.body;
+        if (!Array.isArray(months) || months.length === 0) {
+            return res.status(400).json({ error: 'Meses inválidos ou ausentes.' });
+        }
+        const filters = months.map((month) => {
+            const [year, monthNumber] = month.split('-');
+            const startDate = new Date(`${year}-${monthNumber}-01T00:00:00.000Z`);
+            const endDate = new Date(startDate);
+            endDate.setMonth(endDate.getMonth() + 1);
+
+            return {
+                data: {
+                    gte: startDate,
+                    lt: endDate,
+                },
+            };
+        });
+        const receitas = await prisma.transacao.findMany({
+            where: {
+                OR: [
+                    { tipo_transacao: 'Despesa' },
+                    {
+                        categoria: {
+                            tipo_transacao: 'Despesa',
+                        },
+                    },
+                ],
+            },
+        });
+        const valoresPorMes = months.map((month) => {
+            const total = receitas
+                .filter((r) => r.data.toISOString().startsWith(month))
+                .reduce((sum, r) => sum + r.valor, 0);
+            return total;
+        });
+        res.json({ despesas: valoresPorMes });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err.message);
+    }
+};
+
 
 export default controller;
