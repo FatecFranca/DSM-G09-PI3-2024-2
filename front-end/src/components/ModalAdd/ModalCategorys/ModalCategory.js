@@ -5,7 +5,7 @@ const ModalCategory = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     descricao: '',
     ativo: true,
-    tipo_transacao: 'Pix',
+    tipo_transacao: '',
     usuario: localStorage.getItem('userID')
   });
 
@@ -38,7 +38,7 @@ const ModalCategory = ({ isOpen, onClose }) => {
 
       if (response.ok) {
         setSuccessMessage('Categoria adicionada com sucesso!');
-        setFormData({ descricao: '', ativo: true, tipo_transacao: 'Pix' }); // Limpa o formulário
+        setFormData({ descricao: '', ativo: true, tipo_transacao: '' }); // Limpa o formulário
       } else {
         const errorData = await response.json();
         setErrorMessage(`Erro: ${errorData.message || 'Algo deu errado.'}`);
@@ -80,10 +80,8 @@ const ModalCategory = ({ isOpen, onClose }) => {
               required
             />
             <datalist id="transacoes">
-              <option value="Pix"></option>
-              <option value="Débito"></option>
-              <option value="Crédito"></option>
-              <option value="Cédulas"></option>
+              <option value="Receita"></option>
+              <option value="Despesa"></option>
             </datalist>
           </label>
           <button className="confirm-button" type="submit">

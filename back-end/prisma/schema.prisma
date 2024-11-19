@@ -14,17 +14,15 @@ datasource db {
 }
 
 model Usuario {
-  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
   user            String
   password        String
-  email           String      @unique
+  email           String          @unique
   data_nascimento DateTime
   Categoria       Categoria[]
   Transacao       Transacao[]
-
-  Grupo Grupo[]
-
-  UsuariosGrupo UsuariosGrupo[]
+  Grupo           Grupo[]
+  UsuariosGrupo   UsuariosGrupo[]
 }
 
 model Categoria {

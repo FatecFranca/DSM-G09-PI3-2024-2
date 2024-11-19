@@ -31,20 +31,30 @@ controller.create = async (req, res) => {
 
 controller.retrieveAll = async (req, res) => {
     try {
-        const include = includeRelations(req.query);
+        const { inicio, fim } = req.query;
+        if (!inicio || !fim) {
+            return res.status(400).send({ error: "Os parâmetros 'inicio' e 'fim' são obrigatórios." });
+        }
+        console.log(inicio)
+        console.log(fim)
         const result = await prisma.transacao.findMany({
-            include,
             where: {
-                usuario_id: req.body.usuario
+                data: {
+                    gte: new Date(inicio),
+                    lte: new Date(fim),
+                },
             },
-            orderBy: [{data: 'desc'}]
-        })
+            include: {
+                categoria: true,
+            },
+            orderBy: { data: "desc" },
+        });
         res.status(200).send(result);
     } catch (err) {
         console.error(err);
-        req.status(500).send(err);
+        res.status(500).send(err);
     }
-}
+};
 
 controller.retrieveOne = async (req, res) => {
     try {
@@ -113,4 +123,32 @@ controller.delete = async (req, res) => {
         res.status(500).send(err);
     }
 }
+
+controller.getReceitasByMonths = async (req, res) => {
+    try {
+        const { months } = req.body;
+        const receitas = await prisma.transacao.findMany({
+            where: {
+                tipo_transacao: 'Receita',
+                AND: months.map((month) => ({
+                    data: {
+                        gte: new Date(`${month}-01`),
+                        lt: new Date(`${month}-31`),
+                    },
+                })),
+            },
+        });
+        const valoresPorMes = months.map((month) => {
+            const total = receitas
+                .filter((r) => r.data.toISOString().includes(month))
+                .reduce((sum, r) => sum + r.valor, 0);
+            return total;
+        });
+        res.json({ receitas: valoresPorMes });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err.message);
+    }
+};
+
 export default controller;

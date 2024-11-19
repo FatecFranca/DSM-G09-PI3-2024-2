@@ -5,6 +5,8 @@ import ModalGraph from '../ModalGraphs/ModalRec';
 import ModalGraphDesp from '../ModalGraphs/ModalDesp';
 import './styleboard.css';
 import '../../globalCSS/sideMenu.css';
+import NewsCards from "./Noticia/Noticia";
+import Cards from "./Cards/Cards";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -140,40 +142,7 @@ const Dashboard = () => {
               <i className="fas fa-cog"></i>
             </div>
           </header>
-
-          {/* Saldo */}
-          <div className="balance">
-            <div className="balance-info">
-              <h3>Saldo atual</h3>
-              <span>R$ 204,00</span>
-            </div>
-            <div className="balance-info">
-              <h3>Saldo previsto</h3>
-              <span>R$ 124,00</span>
-            </div>
-          </div>
-
-          {/* Cartões de Despesas e Receitas */}
-          <div className="cards">
-            <div className="card red">
-              <h4>Despesas</h4>
-              <span className="amount red">R$ 543,50</span>
-              <ul>
-                <li>Mercado: R$ 32,00</li>
-                <li>Luz: R$ 80,00</li>
-                <li>Aluguel: R$ 105,50</li>
-              </ul>
-            </div>
-            <div className="card green">
-              <h4>Receitas</h4>
-              <span className="amount green">R$ 1020,50</span>
-              <ul>
-                <li>Salário: R$ 750,00</li>
-                <li>Freelance: R$ 270,50</li>
-              </ul>
-            </div>
-          </div>
-
+          <Cards/>
           {/* Planejamento */}
           <Link to="/Financeiro">
           <div className="planning">
@@ -197,23 +166,7 @@ const Dashboard = () => {
         </div>
 
         {/* Cards de Notícias à direita */}
-        <div className="news-cards-container">
-          <div className="news-card">
-            <img src="news1.jpg" alt="Notícia" />
-            <div className="news-card-content">
-              <h5>Notícia financeira exemplo</h5>
-              <p>Craig Bator - 27 Dec 2020</p>
-            </div>
-          </div>
-          <div className="news-card">
-            <img src="news2.jpg" alt="Notícia" />
-            <div className="news-card-content">
-              <h5>Notícia financeira exemplo</h5>
-              <p>Craig Bator - 27 Dec 2020</p>
-            </div>
-          </div>
-          {/* Adicione mais cards conforme necessário */}
-        </div>
+        <NewsCards/>
       </main>
       <ModalGraphDesp isOpen={isGraphModalDespOpen} closeModal={closeGraphModalDesp} />
       <ModalGraph isOpen={isGraphModalOpen} closeModal={closeGraphModal} />
