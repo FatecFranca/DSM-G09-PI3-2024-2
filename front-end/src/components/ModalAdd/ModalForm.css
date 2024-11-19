@@ -21,7 +21,7 @@
 
 .close-button {
   margin-top: 5px;
-  background-color: #e83f5b;
+  background-color: #AB4C11;
   color: white;
   border: none;
   padding: 10px 10px;
@@ -30,7 +30,7 @@
 
 .confirm-button{
   padding: 12px;
-  background-color: #6ec184;
+  background-color: #9EAD39;
 }
 
 .confirm-button, .close-button{
