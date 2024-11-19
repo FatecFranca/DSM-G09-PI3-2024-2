@@ -91,7 +91,7 @@ body {
 
 .card.red {
   background-color: #f5f1f1;
-  color: red;
+  color: #AB4C11;
 }
 
 .card .amount {
@@ -101,16 +101,16 @@ body {
 }
 
 .card.green .amount {
-  color: #4caf50;
+  color: #9EAD39;
 }
 
 .card.red .amount {
-  color: #ff4d4d;
+  color: #AB4C11;
 }
 
 .card.green {
   background-color: #f5f1f1;
-  color: green;
+  color: #9EAD39;
 }
 
 .amount {
@@ -144,15 +144,15 @@ body {
 }
 
 .progress.orange {
-  background-color: orange;
+  background-color: #EDDC7E;
 }
 
 .progress.red {
-  background-color: red;
+  background-color: #AB4C11;
 }
 
 .progress.blue {
-  background-color: blue;
+  background-color: #9FD4D3;
 }
 
 /* Cards de notícias */
