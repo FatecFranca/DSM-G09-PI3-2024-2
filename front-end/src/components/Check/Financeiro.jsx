@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom';
 import ModalForm from '../ModalAdd/ModalAdd';
 import ModalGraph from '../ModalGraphs/ModalRec'; 
 import ModalGraphDesp from '../ModalGraphs/ModalDesp';
-import ModalGroup from '../ModalGroup/Modalgroup';
-import ModalGroupConfig from '../ModalGroup/ModalGroupConfig';
-import './stylegroup.css';
+import './Financeiro.css';
 
-const Grupos = () => {
+const Financeiro = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
     const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
-    const [isGroupModal, setGroupModal] = useState(false);
-    const [isGroupConfigModal, setGroupConfigModal] =useState(false);
 
     const toggleSidebar = () => {
       setIsSidebarOpen(prevState => !prevState);
@@ -43,24 +39,9 @@ const Grupos = () => {
       setIsGraphModalDespOpen(false);
     };
 
-    const openGroupModal = () => {
-      setGroupModal(true);
-    };
-
-    const closeGroupModal = () => {
-      setGroupModal(false);
-    };
-
-    const openGroupModalConfig = () => {
-      setGroupConfigModal(true);
-    };
-
-    const closeGroupModalConfig = () => {
-      setGroupConfigModal(false);
-    };
 
   return (
-    <div className="group">
+    <div className="fin">
         <div className="menu-icon" onClick={toggleSidebar}>☰</div>
         <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
@@ -111,7 +92,7 @@ const Grupos = () => {
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_248_508" result="shape"/>
           </filter></defs></svg>Início</li>
           </Link>
-          <li class="menu-item grupos">
+          <Link to="/grupos"><li class="menu-item grupos">
           <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_475)">
           <rect x="4" width="26" height="26" rx="13" fill="#274156"/>
@@ -126,7 +107,7 @@ const Grupos = () => {
           <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
           <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_145_475"/>
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_145_475" result="shape"/>
-          </filter></defs></svg>Grupos</li>
+          </filter></defs></svg>Grupos</li></Link>
           <li class="menu-item fechar" onClick={toggleSidebar}>
           <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_478)">
@@ -150,39 +131,82 @@ const Grupos = () => {
         </ul>
         </nav>
       </aside>
-      <div className="headerGroup">
-        <h1>Grupos</h1>
-        <div className="headerContent">        
-          <p>Crie grupos, entre em grupos e descubra uma nova possibilidade de controle de finanças em conjunto.</p>
-          <button className="Groupbutton" onClick={openGroupModal}>Criar grupo</button>
-          <button className="Groupbutton" onClick={openGroupModalConfig}>⚙️</button>
-        </div>
-      </div>
-      <div className="main-content-group">
-        <div className="groups">
-          <h2>Meus grupos</h2>
-          <div className="group-list">
-            <div className="group-item">
-              <h3>Familia</h3>
-              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+      <div className="fin-headerGroup">
+  <header class="fin-header">
+    <button class="fin-nav-button fin-prev" aria-label="Mês anterior">&#8249;</button>
+    <h1>Julho</h1>
+    <button class="fin-nav-button fin-next" aria-label="Próximo mês">&#8250;</button>
+  </header>
+  <section class="fin-indicators">
+    <div class="fin-indicator">
+      <div class="fin-indicator-icon fin-despesas" aria-hidden="true">⬇️</div>
+      <p>Despesas</p>
+    </div>
+    <div class="fin-indicator">
+      <div class="fin-indicator-icon fin-receitas" aria-hidden="true">⬆️</div>
+      <p>Receitas</p>
+    </div>
+  </section>
+  <div class="fin-search-bar">
+    <input type="text" placeholder="🔍 Buscar" aria-label="Buscar" />
+  </div>
+  <section class="fin-table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Quinta, 20</th>
+          <th>Sexta, 21</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="fin-item">
+              <span class="fin-item-icon" aria-hidden="true">🛒</span>
+              <div className="values-fin">
+                <p class="fin-item-title">Mercado</p>
+                <p class="fin-item-status">Efetivado</p>
+              </div>
+              <span class="fin-item-value fin-despesas">R$ 52,30</span>
             </div>
-            <div className="group-item">
-              <h3>Trabalho</h3>
-              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+          </td>
+          <td>
+            <div class="fin-item">
+              <span class="fin-item-icon" aria-hidden="true">🛒</span>
+              <div className="values-fin">
+                <p class="fin-item-title">Mercado</p>
+                <p class="fin-item-status">Efetivado</p>
+              </div>
+              <span class="fin-item-value fin-despesas">R$ 52,30</span>
             </div>
-            <div className="group-item">
-              <h3>Amigos</h3>
-              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="fin-item">
+              <span class="fin-item-icon" aria-hidden="true">👕</span>
+              <div className="values-fin">
+                <p class="fin-item-title">Jaqueta</p>
+                <p class="fin-item-status">Efetivado</p>
+              </div>
+              <span class="fin-item-value fin-despesas">R$ 105,50</span>
             </div>
-            <div className="group-item">
-              <h3>Viagens</h3>
-              <p>Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+          </td>
+          <td>
+            <div class="fin-item">
+              <span class="fin-item-icon" aria-hidden="true">☕</span>
+              <div className="values-fin">
+                <p class="fin-item-title">Café na cantina</p>
+                <p class="fin-item-status">Efetivado</p>
+              </div>
+              <span class="fin-item-value fin-despesas">R$ 7,50</span>
             </div>
-          </div>
-        </div>
-      </div>
-      <ModalGroupConfig isOpen={isGroupConfigModal} onClose={closeGroupModalConfig} />
-      <ModalGroup isOpen={isGroupModal} onClose={closeGroupModal} />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
       <ModalGraphDesp isOpen={isGraphModalDespOpen} closeModal={closeGraphModalDesp} />
       <ModalGraph isOpen={isGraphModalOpen} closeModal={closeGraphModal} />
       <ModalForm isOpen={isModalOpen} onClose={closeModal} />
@@ -190,4 +214,4 @@ const Grupos = () => {
   );
 };
 
-export default Grupos;
+export default Financeiro;
