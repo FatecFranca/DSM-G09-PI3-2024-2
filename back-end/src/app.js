@@ -1,6 +1,7 @@
 import express, { json, urlencoded } from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+import cors from 'cors';
 
 import authenticateRouter from "./routes/authenticate.js";
 import noticiaRouter from './routes/noticia.js';
@@ -9,6 +10,14 @@ import transacaoRouter from './routes/transacao.js';
 import categoriaRouter from './routes/categoria.js';
 
 const app = express()
+
+app.use(
+    cors({
+      origin: 'http://localhost:3000',
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      credentials: true,
+    })
+  );
 
 app.use(logger('dev'))
 app.use(json());

@@ -20,20 +20,16 @@
 }
 
 .close-button {
-  margin-top: 5px;
   background-color: #e83f5b;
-  color: white;
-  border: none;
   padding: 10px 10px;
-  cursor: pointer;
 }
 
 .confirm-button{
-  padding: 12px;
+  padding: 10px 10px;
   background-color: #6ec184;
 }
 
-.confirm-button, .close-button{
+.confirm-button, .close-button, .confirm-button-category{
   width: 100%;
   color: white;
   border: none;
@@ -42,4 +38,30 @@
   margin-inline: 0.2rem;
   margin-top: 1.5rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.message {
+  margin: 10px 0;
+  font-size: 18px;
+  color: rgb(96, 121, 169);
+  text-align: center;
+  display: flex;
+}
+
+.message.error {
+  color: red;
+}
+
+.confirm-button-category{
+  background-color: rgb(96, 121, 169);
+  padding: 10px 10px;
+}
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
