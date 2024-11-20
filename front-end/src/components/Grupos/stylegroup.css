@@ -30,7 +30,7 @@
 .Groupbutton{
     width: 10rem;
     padding: 12px;
-    background-color: #9EAD39;
+    background-color: #274156;
     color: white;
     border: none;
     border-radius: 12px;
@@ -42,6 +42,8 @@
 
 h1{
     margin-top: 2rem;
+    font-size: 3rem;
+    color: #274156;
 }
 
 .groups{
@@ -52,10 +54,32 @@ h1{
     list-style: none;
     align-items: center;
     display: block;
-    align-content: center;
 }
 
 .user-content{
     display: flex;
-    justify-content: center;
 }
+
+.group-tittle, .group-desc{
+    color: #463018;
+}
+
+.group-tittle1 {
+    color: #274156;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.user-item {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .user-label {
+    font-weight: bold;
+    color: #463018;
+    margin-right: 5px;
+  }
+  

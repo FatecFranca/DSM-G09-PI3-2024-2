@@ -194,7 +194,7 @@ const Grupos = () => {
       </div>
       <div className="main-content-group">
       <div className="groups">
-        <h2>Meus grupos</h2>
+        <h2 className="group-tittle1">Meus grupos</h2>
         <div className="group-list">
           {grupos.length > 0 ? (
             grupos.map((grupo) => (
@@ -204,10 +204,10 @@ const Grupos = () => {
                 onClick={() => setGrupoSelecionado(grupo.id)}
               >
                 <div className="group-item">
-                  <h3>
+                  <h3 className="group-tittle">
                     {grupo.nome} #{grupo.id}
                   </h3>
-                  <p>{grupo.descricao}</p>
+                  <p className="group-desc">{grupo.descricao}</p>
                 </div>
               </Link>
             ))
@@ -217,13 +217,14 @@ const Grupos = () => {
         </div>
       </div>
         <div className="usuarios">
-        <h2>Usuários do Grupo</h2>
+        <h2 className="group-tittle1">Usuários do Grupo</h2>
         {grupoSelecionado && (
         <div className="user-content">
           <ul className="user-list">
             {usuarios.map((usuario) => (
-              <li key={usuario.usuario.id}>
-                ID: {usuario.usuario.id}, User: {usuario.usuario.user}
+              <li key={usuario.usuario.id} className="user-item">
+                <span className="user-label">ID:</span> {usuario.usuario.id} <br />
+                <span className="user-label">User:</span> {usuario.usuario.user}
               </li>
             ))}
           </ul>

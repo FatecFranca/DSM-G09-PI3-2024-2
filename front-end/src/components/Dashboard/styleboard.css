@@ -101,16 +101,16 @@ body {
 }
 
 .card.green .amount {
-  color: #9EAD39;
+  color: #12A454;
 }
 
 .card.red .amount {
-  color: #AB4C11;
+  color: #FD4C4C;
 }
 
 .card.green {
   background-color: #f5f1f1;
-  color: #9EAD39;
+  color: #12A454;
 }
 
 .amount {

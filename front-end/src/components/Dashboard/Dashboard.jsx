@@ -8,11 +8,13 @@ import '../../globalCSS/sideMenu.css';
 import NewsCards from "./Noticia/Noticia";
 import Cards from "./Cards/Cards";
 
-const Dashboard = () => {
+const Dashboard = ({ userId }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
   const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
+  const [categorias, setCategorias] = useState([]);
+  const [dadosCategorias, setDadosCategorias] = useState([]);
   const [userName, setUserName] = useState('');
 
   const toggleSidebar = () => {
@@ -51,6 +53,42 @@ const Dashboard = () => {
       setUserName('Usuário não encontrado');
     }
   }, []);
+
+  useEffect(() => {
+    const fetchCategorias = async () => {
+      try {
+        // Buscando as categorias
+        const categoriaResponse = await fetch("http://localhost:8080/categoria");
+        const categorias = await categoriaResponse.json();
+
+        // Calculando a quantidade de transações por categoria
+        const dadosPromises = categorias.map(async (categoria) => {
+          const transacaoResponse = await fetch(
+            `http://localhost:8080/transacao/receita/${localStorage.getItem('userID')}`
+          );
+          const transacoes = await transacaoResponse.json();
+
+          // Filtrar as transações pela categoria
+          const transacoesDaCategoria = transacoes.filter(
+            (t) => t.categoria_id.$oid === categoria._id.$oid
+          );
+
+          // Retornar o nome da categoria e o número de transações
+          return {
+            nome: categoria.descricao,
+            quantidade: transacoesDaCategoria.length,
+          };
+        });
+
+        const dados = await Promise.all(dadosPromises);
+        setDadosCategorias(dados);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    };
+
+    fetchCategorias();
+  }, [localStorage.getItem('userID')]);
 
   return (
     <div className="dashboard">
@@ -145,23 +183,27 @@ const Dashboard = () => {
           <Cards/>
           {/* Planejamento */}
           <Link to="/Financeiro">
-          <div className="planning">
-            <h4>Planejamento</h4>
-            <div className="bar-container">
-              <div className="bar">
-                <span>Educação</span>
-                <div className="progress red" style={{ width: '85%' }}></div>
-              </div>
-              <div className="bar">
-                <span>Lazer</span>
-                <div className="progress orange" style={{ width: '70%' }}></div>
-              </div>
-              <div className="bar">
-                <span>Alimentação</span>
-                <div className="progress blue" style={{ width: '50%' }}></div>
+            <div className="planning">
+              <h4>Planejamento</h4>
+              <div className="bar-container">
+                {dadosCategorias.map((categoria) => {
+                  const porcentagem =
+                    (categoria.quantidade / dadosCategorias.length) * 100;
+                  return (
+                    <div className="bar" key={categoria.nome}>
+                      <span>{categoria.nome}</span>
+                      <div
+                        className="progress"
+                        style={{
+                          width: `${porcentagem}%`,
+                          backgroundColor: getCategoriaColor(categoria.nome),
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          </div>
           </Link>
         </div>
 
@@ -173,6 +215,16 @@ const Dashboard = () => {
       <ModalForm isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
+};
+
+const getCategoriaColor = (nomeCategoria) => {
+  const cores = {
+    Educação: "red",
+    Lazer: "orange",
+    Alimentação: "blue",
+  };
+
+  return cores[nomeCategoria] || "gray";
 };
 
 export default Dashboard;

@@ -31,7 +31,7 @@
   }
   
   h2 {
-    color: #9EAD39;
+    color: #12A454;
     font-size: 3rem;
     margin-bottom: 1rem;
   }
@@ -58,7 +58,7 @@
   .submit-btn {
     width: 100%;
     padding: 12px;
-    background-color: #9EAD39;
+    background-color: #12A454;
     color: white;
     border: none;
     border-radius: 12px;
@@ -69,11 +69,11 @@
   }
   
   button:hover {
-    background-color: #9EAD39;
+    background-color: dimgray;
   }
   
   a {
-    color: #9EAD39;
+    color: #12A454;
     text-decoration: none;
   }
   
