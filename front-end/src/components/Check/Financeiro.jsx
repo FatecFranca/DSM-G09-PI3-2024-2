@@ -1,60 +1,70 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import ModalForm from '../ModalAdd/ModalAdd';
 import ModalGraph from '../ModalGraphs/ModalRec'; 
 import ModalGraphDesp from '../ModalGraphs/ModalDesp';
 import './Financeiro.css';
+import Table from "./TableFinance/Table";
 
 const Financeiro = () => {
+    const [searchTerm, setSearchTerm] = useState('');
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
     const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
-    const [currentMonthIndex, setCurrentMonthIndex] = useState(6);
+    const [currentMonthIndex, setCurrentMonthIndex] = useState(new Date().getMonth()); // Define o mês atual
     const months = [
-        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", 
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio",
         "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
     ];
 
+    useEffect(() => {
+        const currentMonth = new Date().getMonth();
+        setCurrentMonthIndex(currentMonth); // Atualiza o mês no estado
+    }, []);
+
     const toggleSidebar = () => {
-      setIsSidebarOpen(prevState => !prevState);
+        setIsSidebarOpen(prevState => !prevState);
     };
 
     const openModal = () => {
-      setIsModalOpen(true);
+        setIsModalOpen(true);
     };
-  
+
     const closeModal = () => {
-      setIsModalOpen(false);
+        setIsModalOpen(false);
     };
-      
+
     const openGraphModal = () => {
-      setIsGraphModalOpen(true);
+        setIsGraphModalOpen(true);
     };
 
     const closeGraphModal = () => {
-      setIsGraphModalOpen(false);
+        setIsGraphModalOpen(false);
     };
 
     const openGraphModalDesp = () => {
-      setIsGraphModalDespOpen(true);
+        setIsGraphModalDespOpen(true);
     };
 
     const closeGraphModalDesp = () => {
-      setIsGraphModalDespOpen(false);
+        setIsGraphModalDespOpen(false);
     };
-
 
     const handlePrevMonth = () => {
-      setCurrentMonthIndex((prevIndex) => 
-          prevIndex === 0 ? months.length - 1 : prevIndex - 1
-      );
+        setCurrentMonthIndex((prevIndex) =>
+            prevIndex === 0 ? months.length - 1 : prevIndex - 1
+        );
     };
 
-  const handleNextMonth = () => {
-      setCurrentMonthIndex((prevIndex) => 
-          prevIndex === months.length - 1 ? 0 : prevIndex + 1
-      );
+    const handleNextMonth = () => {
+        setCurrentMonthIndex((prevIndex) =>
+            prevIndex === months.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
     };
 
 
@@ -149,97 +159,53 @@ const Financeiro = () => {
         </ul>
         </nav>
       </aside>
-      <div className="fin-headerGroup">
-                <header className="fin-header">
-                    <button 
-                        className="fin-nav-button fin-prev" 
-                        aria-label="Mês anterior" 
-                        onClick={handlePrevMonth}
-                    >
-                        &#8249;
-                    </button>
-                    <h1>{months[currentMonthIndex]}</h1>
-                    <button 
-                        className="fin-nav-button fin-next" 
-                        aria-label="Próximo mês" 
-                        onClick={handleNextMonth}
-                    >
-                        &#8250;
-                    </button>
-                </header>
-  <section className="fin-indicators">
-    <div className="fin-indicator">
-      <div className="fin-indicator-icon fin-despesas" aria-hidden="true">⬇️</div>
-      <p>Despesas</p>
-    </div>
-    <div className="fin-indicator">
-      <div className="fin-indicator-icon fin-receitas" aria-hidden="true">⬆️</div>
-      <p>Receitas</p>
-    </div>
-  </section>
-  <div className="fin-search-bar">
-    <input type="text" placeholder="🔍 Buscar" aria-label="Buscar" />
-  </div>
-  <section className="fin-table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Quinta, 20</th>
-          <th>Sexta, 21</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div className="fin-item">
-              <div className="values-fin">
-                <p className="fin-item-title">Mercado</p>
-                <p className="fin-item-status">Efetivado</p>
-              </div>
-              <span className="fin-item-value fin-despesas">R$ 52,30</span>
-              <button className="Delete-button">Remover</button>
+        <div className="fin-headerGroup">
+            <header className="fin-header">
+                <button
+                    className="fin-nav-button fin-prev"
+                    aria-label="Mês anterior"
+                    onClick={handlePrevMonth}
+                >
+                    &#8249;
+                </button>
+                <h1>{months[currentMonthIndex]}</h1>
+                <button
+                    className="fin-nav-button fin-next"
+                    aria-label="Próximo mês"
+                    onClick={handleNextMonth}
+                >
+                    &#8250;
+                </button>
+            </header>
+            <section className="fin-indicators">
+                <div className="fin-indicator">
+                    <div className="fin-indicator-icon fin-despesas" aria-hidden="true"></div>
+                    <p></p>
+                </div>
+                <div className="fin-indicator">
+                    <div className="fin-indicator-icon fin-receitas" aria-hidden="true"></div>
+                    <p></p>
+                </div>
+            </section>
+            <div className="fin-search-bar">
+                <input
+                    type="text"
+                    placeholder="🔍 Buscar"
+                    aria-label="Buscar"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
             </div>
-          </td>
-          <td>
-            <div className="fin-item">
-              <div className="values-fin">
-                <p className="fin-item-title">Mercado</p>
-                <p className="fin-item-status">Efetivado</p>
-              </div>
-              <span className="fin-item-value fin-despesas">R$ 52,30</span>
-              <button className="Delete-button">Remover</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div className="fin-item">
-              <div className="values-fin">
-                <p className="fin-item-title">Jaqueta</p>
-                <p className="fin-item-status">Efetivado</p>
-              </div>
-              <span className="fin-item-value fin-despesas">R$ 105,50</span>
-              <button className="Delete-button">Remover</button>
-            </div>
-          </td>
-          <td>
-            <div className="fin-item">
-              <div className="values-fin">
-                <p className="fin-item-title">Café na cantina</p>
-                <p className="fin-item-status">Efetivado</p>
-              </div>
-              <span className="fin-item-value fin-despesas">R$ 7,50</span>
-              <button className="Delete-button">Remover</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-</div>
-      <ModalGraphDesp isOpen={isGraphModalDespOpen} closeModal={closeGraphModalDesp} />
-      <ModalGraph isOpen={isGraphModalOpen} closeModal={closeGraphModal} />
-      <ModalForm isOpen={isModalOpen} onClose={closeModal} />
+            <section className="fin-table-container">
+                <Table
+                    month={months[currentMonthIndex]}
+                    searchTerm={searchTerm}
+                />
+            </section>
+        </div>
+        <ModalGraphDesp isOpen={isGraphModalDespOpen} closeModal={closeGraphModalDesp}/>
+        <ModalGraph isOpen={isGraphModalOpen} closeModal={closeGraphModal}/>
+        <ModalForm isOpen={isModalOpen} onClose={closeModal}/>
     </div>
   );
 };
