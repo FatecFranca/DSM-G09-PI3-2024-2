@@ -9,16 +9,16 @@ import ModalGroupConfig from '../ModalGroup/ModalGroupConfig';
 import './stylegroup.css';
 
 const Grupos = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
-    const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
-    const [isGroupModal, setGroupModal] = useState(false);
-    const [isGroupConfigModal, setGroupConfigModal] =useState(false);
-    const [grupos, setGrupos] = useState([]);
-    const [usuarios, setUsuarios] = useState([]);
-    const [grupoSelecionado, setGrupoSelecionado] = useState(null);
-    const userId = localStorage.getItem('userID');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
+  const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
+  const [isGroupModal, setGroupModal] = useState(false);
+  const [isGroupConfigModal, setGroupConfigModal] = useState(false);
+  const [grupos, setGrupos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
+  const [grupoSelecionado, setGrupoSelecionado] = useState(null);
+  const userId = localStorage.getItem('userID');
 
   useEffect(() => {
     const fetchGrupos = async () => {
@@ -33,7 +33,6 @@ const Grupos = () => {
     fetchGrupos();
   }, [userId]);
 
-  // Buscar os usuários do grupo selecionado
   useEffect(() => {
     if (grupoSelecionado) {
       const fetchUsuarios = async () => {
@@ -218,20 +217,18 @@ const Grupos = () => {
         </div>
       </div>
         <div className="usuarios">
-        <h1>Usuários do Grupo</h1>
-        {grupoSelecionado ? (
+        <h2>Usuários do Grupo</h2>
+        {grupoSelecionado && (
+        <div className="user-content">
           <ul className="user-list">
-            {usuarios.length > 0 ? (
-              usuarios.map(usuario => (
-                <li key={usuario.id}>{usuario.user}</li>
-              ))
-            ) : (
-              <p>Nenhum usuário encontrado no grupo.</p>
-            )}
+            {usuarios.map((usuario) => (
+              <li key={usuario.usuario.id}>
+                ID: {usuario.usuario.id}, User: {usuario.usuario.user}
+              </li>
+            ))}
           </ul>
-        ) : (
-          <p>Selecione um grupo para ver os usuários.</p>
-        )}
+        </div>
+      )}
       </div>
       </div>
       <ModalGroupConfig isOpen={isGroupConfigModal} onClose={closeGroupModalConfig} />

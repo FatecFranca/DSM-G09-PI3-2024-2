@@ -9,7 +9,7 @@
     display: -webkit-box;
     margin-block-start: 10rem;
     margin-inline: 10rem;
-    width: 50%;
+    width: 90%;
 }
 
 .headerContent{
@@ -46,4 +46,16 @@ h1{
 
 .groups{
     width: 50%;
+}
+
+.user-list{
+    list-style: none;
+    align-items: center;
+    display: block;
+    align-content: center;
+}
+
+.user-content{
+    display: flex;
+    justify-content: center;
 }
