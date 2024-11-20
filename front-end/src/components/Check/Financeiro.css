@@ -24,7 +24,7 @@ body {
   .fin-indicators {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     margin: 15px 0;
   }
   
@@ -129,6 +129,18 @@ body {
 
   .values-fin{
     width: 20%;
+  }
+
+  .Delete-button{
+    background-color: #e83f5b;
+    padding: 10px 10px;
+    width: 20%;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-inline: 0.2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
     /* Responsiveness */

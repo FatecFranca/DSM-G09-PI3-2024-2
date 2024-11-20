@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Cards = () => {
-    const [transacoes, setTransacoes] = useState([]);
     const [saldoAtual, setSaldoAtual] = useState(0);
     const [saldoPrevisto, setSaldoPrevisto] = useState(0);
     const [despesas, setDespesas] = useState([]);
@@ -34,7 +33,6 @@ const Cards = () => {
                 );
                 const saldoPrevistoCalc = saldoAtualCalc + Math.abs(saldoAtualCalc * 0.1);
 
-                setTransacoes(transacoes);
                 setDespesas(despesasFiltradas);
                 setReceitas(receitasFiltradas);
                 setSaldoAtual(saldoAtualCalc);
@@ -68,8 +66,8 @@ const Cards = () => {
                 <div className="card red">
                     <h4>Despesas</h4>
                     <span className="amount red">
-            R$ {despesas.reduce((acc, t) => acc + t.valor, 0).toFixed(2)}
-          </span>
+                        R$ {despesas.reduce((acc, t) => acc + t.valor, 0).toFixed(2)}
+                    </span>
                     <ul>
                         {despesas.slice(-3).map((d, index) => (
                             <li key={index}>
@@ -82,8 +80,8 @@ const Cards = () => {
                 <div className="card green">
                     <h4>Receitas</h4>
                     <span className="amount green">
-            R$ {receitas.reduce((acc, t) => acc + t.valor, 0).toFixed(2)}
-          </span>
+                        R$ {receitas.reduce((acc, t) => acc + t.valor, 0).toFixed(2)}
+                    </span>
                     <ul>
                         {receitas.slice(-3).map((r, index) => (
                             <li key={index}>

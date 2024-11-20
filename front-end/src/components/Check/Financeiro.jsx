@@ -10,6 +10,11 @@ const Financeiro = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
     const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
+    const [currentMonthIndex, setCurrentMonthIndex] = useState(6);
+    const months = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", 
+        "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
 
     const toggleSidebar = () => {
       setIsSidebarOpen(prevState => !prevState);
@@ -40,12 +45,25 @@ const Financeiro = () => {
     };
 
 
+    const handlePrevMonth = () => {
+      setCurrentMonthIndex((prevIndex) => 
+          prevIndex === 0 ? months.length - 1 : prevIndex - 1
+      );
+    };
+
+  const handleNextMonth = () => {
+      setCurrentMonthIndex((prevIndex) => 
+          prevIndex === months.length - 1 ? 0 : prevIndex + 1
+      );
+    };
+
+
   return (
     <div className="fin">
         <div className="menu-icon" onClick={toggleSidebar}>☰</div>
         <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
-        <ul class="menu-list">
+        <ul className="menu-list">
           <li className="menu-adicionar" onClick={openModal}>
           <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_491)">
@@ -63,18 +81,18 @@ const Financeiro = () => {
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_145_491" result="shape"/>
           </filter></defs></svg>
           </li>
-          <li class="menu-item receita" onClick={openGraphModal}>
+          <li className="menu-item receita" onClick={openGraphModal}>
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="13" cy="13" r="13" fill="#12A454"/>
           <path d="M11.0126 20.3876H16.2626M11.0126 17.7626H16.2626M11.0126 12.5126H7.87481C7.70178 12.5125 7.53265 12.4612 7.38879 12.365C7.24493 12.2689 7.13281 12.1322 7.0666 11.9724C7.00038 11.8125 6.98306 11.6366 7.0168 11.4669C7.05055 11.2972 7.13386 11.1413 7.25619 11.0189L13.0189 5.25619C13.183 5.09215 13.4055 5 13.6376 5C13.8696 5 14.0921 5.09215 14.2562 5.25619L20.0189 11.0189C20.1413 11.1413 20.2246 11.2972 20.2583 11.4669C20.2921 11.6366 20.2747 11.8125 20.2085 11.9724C20.1423 12.1322 20.0302 12.2689 19.8863 12.365C19.7425 12.4612 19.5733 12.5125 19.4003 12.5126H16.2626V15.1376H11.0126V12.5126Z" stroke="#ECF3FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>Receita</li>
-          <li class="menu-item despesa" onClick={openGraphModalDesp}>
+          <li className="menu-item despesa" onClick={openGraphModalDesp}>
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="13" cy="13" r="13" fill="#E83F5B"/>
           <path d="M11.0126 5.61244H16.2626M11.0126 8.23744H16.2626M11.0126 13.4874H7.87481C7.70178 13.4875 7.53265 13.5388 7.38879 13.635C7.24493 13.7311 7.13281 13.8678 7.0666 14.0276C7.00038 14.1875 6.98306 14.3634 7.0168 14.5331C7.05055 14.7028 7.13386 14.8587 7.25619 14.9811L13.0189 20.7438C13.183 20.9078 13.4055 21 13.6376 21C13.8696 21 14.0921 20.9078 14.2562 20.7438L20.0189 14.9811C20.1413 14.8587 20.2246 14.7028 20.2583 14.5331C20.2921 14.3634 20.2747 14.1875 20.2085 14.0276C20.1423 13.8678 20.0302 13.7311 19.8863 13.635C19.7425 13.5388 19.5733 13.4875 19.4003 13.4874H16.2626V10.8624H11.0126V13.4874Z" stroke="#ECF3FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>Despesa</li>
           <Link to="/dashboard">
-          <li class="menu-item inicio">
+          <li className="menu-item inicio">
           <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_248_508)">
           <rect x="4" width="26" height="26" rx="13" fill="#274156"/>
@@ -92,7 +110,7 @@ const Financeiro = () => {
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_248_508" result="shape"/>
           </filter></defs></svg>Início</li>
           </Link>
-          <Link to="/grupos"><li class="menu-item grupos">
+          <Link to="/grupos"><li className="menu-item grupos">
           <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_475)">
           <rect x="4" width="26" height="26" rx="13" fill="#274156"/>
@@ -108,7 +126,7 @@ const Financeiro = () => {
           <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_145_475"/>
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_145_475" result="shape"/>
           </filter></defs></svg>Grupos</li></Link>
-          <li class="menu-item fechar" onClick={toggleSidebar}>
+          <li className="menu-item fechar" onClick={toggleSidebar}>
           <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_145_478)">
           <rect x="4" width="26" height="26" rx="13" fill="#274156"/>
@@ -132,25 +150,37 @@ const Financeiro = () => {
         </nav>
       </aside>
       <div className="fin-headerGroup">
-  <header class="fin-header">
-    <button class="fin-nav-button fin-prev" aria-label="Mês anterior">&#8249;</button>
-    <h1>Julho</h1>
-    <button class="fin-nav-button fin-next" aria-label="Próximo mês">&#8250;</button>
-  </header>
-  <section class="fin-indicators">
-    <div class="fin-indicator">
-      <div class="fin-indicator-icon fin-despesas" aria-hidden="true">⬇️</div>
+                <header className="fin-header">
+                    <button 
+                        className="fin-nav-button fin-prev" 
+                        aria-label="Mês anterior" 
+                        onClick={handlePrevMonth}
+                    >
+                        &#8249;
+                    </button>
+                    <h1>{months[currentMonthIndex]}</h1>
+                    <button 
+                        className="fin-nav-button fin-next" 
+                        aria-label="Próximo mês" 
+                        onClick={handleNextMonth}
+                    >
+                        &#8250;
+                    </button>
+                </header>
+  <section className="fin-indicators">
+    <div className="fin-indicator">
+      <div className="fin-indicator-icon fin-despesas" aria-hidden="true">⬇️</div>
       <p>Despesas</p>
     </div>
-    <div class="fin-indicator">
-      <div class="fin-indicator-icon fin-receitas" aria-hidden="true">⬆️</div>
+    <div className="fin-indicator">
+      <div className="fin-indicator-icon fin-receitas" aria-hidden="true">⬆️</div>
       <p>Receitas</p>
     </div>
   </section>
-  <div class="fin-search-bar">
+  <div className="fin-search-bar">
     <input type="text" placeholder="🔍 Buscar" aria-label="Buscar" />
   </div>
-  <section class="fin-table-container">
+  <section className="fin-table-container">
     <table>
       <thead>
         <tr>
@@ -161,45 +191,45 @@ const Financeiro = () => {
       <tbody>
         <tr>
           <td>
-            <div class="fin-item">
-              <span class="fin-item-icon" aria-hidden="true">🛒</span>
+            <div className="fin-item">
               <div className="values-fin">
-                <p class="fin-item-title">Mercado</p>
-                <p class="fin-item-status">Efetivado</p>
+                <p className="fin-item-title">Mercado</p>
+                <p className="fin-item-status">Efetivado</p>
               </div>
-              <span class="fin-item-value fin-despesas">R$ 52,30</span>
+              <span className="fin-item-value fin-despesas">R$ 52,30</span>
+              <button className="Delete-button">Remover</button>
             </div>
           </td>
           <td>
-            <div class="fin-item">
-              <span class="fin-item-icon" aria-hidden="true">🛒</span>
+            <div className="fin-item">
               <div className="values-fin">
-                <p class="fin-item-title">Mercado</p>
-                <p class="fin-item-status">Efetivado</p>
+                <p className="fin-item-title">Mercado</p>
+                <p className="fin-item-status">Efetivado</p>
               </div>
-              <span class="fin-item-value fin-despesas">R$ 52,30</span>
+              <span className="fin-item-value fin-despesas">R$ 52,30</span>
+              <button className="Delete-button">Remover</button>
             </div>
           </td>
         </tr>
         <tr>
           <td>
-            <div class="fin-item">
-              <span class="fin-item-icon" aria-hidden="true">👕</span>
+            <div className="fin-item">
               <div className="values-fin">
-                <p class="fin-item-title">Jaqueta</p>
-                <p class="fin-item-status">Efetivado</p>
+                <p className="fin-item-title">Jaqueta</p>
+                <p className="fin-item-status">Efetivado</p>
               </div>
-              <span class="fin-item-value fin-despesas">R$ 105,50</span>
+              <span className="fin-item-value fin-despesas">R$ 105,50</span>
+              <button className="Delete-button">Remover</button>
             </div>
           </td>
           <td>
-            <div class="fin-item">
-              <span class="fin-item-icon" aria-hidden="true">☕</span>
+            <div className="fin-item">
               <div className="values-fin">
-                <p class="fin-item-title">Café na cantina</p>
-                <p class="fin-item-status">Efetivado</p>
+                <p className="fin-item-title">Café na cantina</p>
+                <p className="fin-item-status">Efetivado</p>
               </div>
-              <span class="fin-item-value fin-despesas">R$ 7,50</span>
+              <span className="fin-item-value fin-despesas">R$ 7,50</span>
+              <button className="Delete-button">Remover</button>
             </div>
           </td>
         </tr>

@@ -9,6 +9,7 @@
     display: -webkit-box;
     margin-block-start: 10rem;
     margin-inline: 10rem;
+    width: 50%;
 }
 
 .headerContent{
@@ -41,4 +42,8 @@
 
 h1{
     margin-top: 2rem;
+}
+
+.groups{
+    width: 50%;
 }
