@@ -146,8 +146,34 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
+
+
+
+  @media (max-width: 1265px) {
+    .fin-header{
+      width: 80%;
+    }
+    .fin-headerGroup{
+      margin-left: 4rem;
+    } 
+  }
+
     /* Responsiveness */
     @media (max-width: 768px) {
+        .fin-header{
+          width: 25%;
+        }
+        .fin-headerGroup{
+          margin-left: 0rem;
+        }
+        .fin-search-bar{
+          justify-content: start;
+          margin-left: 1.5rem;
+        }
+        .fin-table-container {
+          width: 60%;
+          margin: 0 0;
+        }
         .fin-header h1 {
           font-size: 1.2rem;
         }
