@@ -130,12 +130,11 @@ body {
 .bar-container .bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 10px 0;
 }
 
 .progress {
-  flex: 1;
   height: 10px;
   background-color: #f5f1f1;
   border-radius: 5px;

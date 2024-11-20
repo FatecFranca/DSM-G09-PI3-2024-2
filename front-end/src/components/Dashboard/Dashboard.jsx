@@ -13,9 +13,19 @@ const Dashboard = ({ userId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
   const [isGraphModalDespOpen, setIsGraphModalDespOpen] = useState(false);
-  const [categorias, setCategorias] = useState([]);
   const [dadosCategorias, setDadosCategorias] = useState([]);
+  const [dadosTransacoes, setDadosTransacoes] = useState([]);
   const [userName, setUserName] = useState('');
+  const [currentMonthIndex, setCurrentMonthIndex] = useState(new Date().getMonth());
+  const months = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio",
+    "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+
+  useEffect(() => {
+    const currentMonth = new Date().getMonth();
+    setCurrentMonthIndex(currentMonth); // Atualiza o mês no estado
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);
@@ -57,31 +67,29 @@ const Dashboard = ({ userId }) => {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        // Buscando as categorias
         const categoriaResponse = await fetch("http://localhost:8080/categoria");
         const categorias = await categoriaResponse.json();
 
-        // Calculando a quantidade de transações por categoria
         const dadosPromises = categorias.map(async (categoria) => {
           const transacaoResponse = await fetch(
-            `http://localhost:8080/transacao/receita/${localStorage.getItem('userID')}`
+            `http://localhost:8080/transacao/receita/${localStorage.getItem('userID')}?month=${months[currentMonthIndex]}`
           );
           const transacoes = await transacaoResponse.json();
-
-          // Filtrar as transações pela categoria
+          setDadosTransacoes(transacoes);
           const transacoesDaCategoria = transacoes.filter(
-            (t) => t.categoria_id.$oid === categoria._id.$oid
+            (t) => t.categoria_id === categoria.id
           );
 
-          // Retornar o nome da categoria e o número de transações
           return {
             nome: categoria.descricao,
             quantidade: transacoesDaCategoria.length,
+            tipo_transacao: categoria.tipo_transacao
           };
         });
 
         const dados = await Promise.all(dadosPromises);
-        setDadosCategorias(dados);
+        const dadosFiltrados = dados.filter(d => (d.quantidade > 0));
+        setDadosCategorias(dadosFiltrados);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
@@ -92,7 +100,6 @@ const Dashboard = ({ userId }) => {
 
   return (
     <div className="dashboard">
-      {/* Menu Lateral */}
       <div className="menu-icon" onClick={toggleSidebar}>☰</div>
         <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <nav>
@@ -166,10 +173,7 @@ const Dashboard = ({ userId }) => {
         </ul>
         </nav>
       </aside>
-
-      {/* Conteúdo Principal */}
       <main className="content">
-        {/* Área Principal */}
         <div className="main-content">
           <header className="header">
             <div className="profile">
@@ -181,22 +185,21 @@ const Dashboard = ({ userId }) => {
             </div>
           </header>
           <Cards/>
-          {/* Planejamento */}
           <Link to="/Financeiro">
             <div className="planning">
               <h4>Planejamento</h4>
               <div className="bar-container">
                 {dadosCategorias.map((categoria) => {
                   const porcentagem =
-                    (categoria.quantidade / dadosCategorias.length) * 100;
+                    (categoria.quantidade / dadosTransacoes.length) * 100;
                   return (
                     <div className="bar" key={categoria.nome}>
-                      <span>{categoria.nome}</span>
+                      <span>{categoria.nome.substring(0,7)}</span>
                       <div
                         className="progress"
                         style={{
-                          width: `${porcentagem}%`,
-                          backgroundColor: getCategoriaColor(categoria.nome),
+                          width:`${porcentagem}%`,
+                          backgroundColor: getCategoriaColor(categoria)
                         }}
                       ></div>
                     </div>
@@ -206,8 +209,6 @@ const Dashboard = ({ userId }) => {
             </div>
           </Link>
         </div>
-
-        {/* Cards de Notícias à direita */}
         <NewsCards/>
       </main>
       <ModalGraphDesp isOpen={isGraphModalDespOpen} closeModal={closeGraphModalDesp} />
@@ -217,14 +218,12 @@ const Dashboard = ({ userId }) => {
   );
 };
 
-const getCategoriaColor = (nomeCategoria) => {
+const getCategoriaColor = (categoria) => {
   const cores = {
-    Educação: "red",
-    Lazer: "orange",
-    Alimentação: "blue",
+    Despesa: "red",
+    Receita: "green",
   };
-
-  return cores[nomeCategoria] || "gray";
+  return cores[categoria.tipo_transacao] || "gray";
 };
 
 export default Dashboard;
