@@ -215,6 +215,7 @@ controller.getDespesaByMonths = async (req, res) => {
 controller.getReceitasByMonth = async (req, res) => {
     try {
         const { month } = req.query;
+        const { userId } = req.params;
 
         if (!month) {
             return res.status(400).json({ error: 'Mês ausente ou inválido.' });
@@ -245,15 +246,15 @@ controller.getReceitasByMonth = async (req, res) => {
 
         const startDate = new Date(`${year}-${monthNumber}-01T00:00:00.000Z`);
         const endDate = new Date(startDate);
-        endDate.setMonth(endDate.getMonth() + 1); // Adiciona um mês para definir o final do mês
+        endDate.setMonth(endDate.getMonth() + 1);
 
-        // Busca todas as transações de receita dentro do mês
         const receitas = await prisma.transacao.findMany({
             where: {
                 data: {
-                    gte: startDate,  // Data de início do mês
-                    lt: endDate,     // Data de fim do mês
+                    gte: startDate,
+                    lt: endDate,
                 },
+                usuario_id: userId,
             },
             include: {
                 categoria: true,

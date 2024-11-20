@@ -8,7 +8,7 @@ router.get('/', controller.retrieveAll);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.delete);
 router.post('/receitas', controller.getReceitasByMonths);
-router.get('/receita', controller.getReceitasByMonth);
+router.get('/receita/:userId', controller.getReceitasByMonth)
 router.post('/despesas', controller.getDespesaByMonths);
 
 export default router;
