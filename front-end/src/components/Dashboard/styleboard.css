@@ -140,6 +140,7 @@ body {
   border-radius: 5px;
   overflow: hidden;
   margin-left: 10px;
+  box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .progress.orange {
@@ -187,4 +188,51 @@ body {
 
 .news-card-content{
   width: 25%;
+}
+
+.plan-link{
+  text-decoration: none;
+  color: inherit;
+}
+
+h4{
+  color: #AB4c11;
+}
+
+.plan-name{
+  color: #463018;
+}
+
+/* Responsividade Dashboard */
+
+@media (max-width: 960px) {
+  .content{
+    margin-left: 3rem;
+    display: block;
+  }
+  .main-content{
+    width: 100%;
+  }
+  .planning{
+    width: 40%;
+  }
+  .cards{
+    display: block;
+    width: 40%;
+  }
+  .balance {
+    display: flex;
+    gap: 5rem;
+    justify-content: flex-start;
+  }
+  .news-card {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 435px) {
+  .cards, .planning{
+    width: 25%;
+  }
+  .header{margin-left: 2rem;}
 }

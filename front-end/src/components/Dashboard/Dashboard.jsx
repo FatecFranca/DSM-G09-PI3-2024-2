@@ -184,7 +184,7 @@ const Dashboard = ({ userId }) => {
             </div>
           </header>
           <Cards/>
-          <Link to="/Financeiro">
+          <Link to="/Financeiro" className="plan-link">
             <div className="planning">
               <h4>Planejamento</h4>
               <div className="bar-container">
@@ -193,7 +193,7 @@ const Dashboard = ({ userId }) => {
                     (categoria.quantidade / dadosTransacoes.length) * 100;
                   return (
                     <div className="bar" key={categoria.nome}>
-                      <span>{categoria.nome.substring(0,7)}</span>
+                      <span className="plan-name">{categoria.nome.substring(0,7)}</span>
                       <div
                         className="progress"
                         style={{
