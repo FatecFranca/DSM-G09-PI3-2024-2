@@ -20,7 +20,6 @@
 
 .headerContent, p{
     margin: 0;
-    width: 80rem;
 }
 
 .group-item{
@@ -76,10 +75,107 @@ h1{
     margin-bottom: 10px;
     line-height: 1.5;
   }
-  
+
   .user-label {
     font-weight: bold;
     color: #463018;
     margin-right: 5px;
   }
-  
+
+@media (max-width: 1284px) {
+    .headerGroup {
+        margin-inline: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-content-group{
+        margin-inline: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .headerContent, p {
+
+        margin-left: 15%;
+    }
+
+    .Groupbutton {
+        width: 8rem;
+        margin-top: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .usuarios {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .usuarios {
+        margin-top: 2rem;
+        box-sizing: border-box;
+    }
+
+    .group-tittle1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .user-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    .user-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .user-item {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        word-wrap: break-word;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.5rem;
+    }
+
+    .user-label {
+        font-weight: bold;
+        color: #374151;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerGroup, .main-content-group {
+        margin-inline: 1rem;
+    }
+
+    .headerContent, p {
+        font-size: 0.9rem;
+    }
+
+    .Groupbutton {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .groups {
+        margin: 0;
+    }
+
+}

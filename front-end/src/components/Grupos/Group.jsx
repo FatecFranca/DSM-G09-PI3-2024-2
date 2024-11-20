@@ -188,8 +188,10 @@ const Grupos = () => {
         <h1>Grupos</h1>
         <div className="headerContent">        
           <p>Crie grupos, entre em grupos e descubra uma nova possibilidade de controle de finanças em conjunto.</p>
+          <div>
           <button className="Groupbutton" onClick={openGroupModal}>Criar grupo</button>
           <button className="Groupbutton" onClick={openGroupModalConfig}>⚙️</button>
+          </div>
         </div>
       </div>
       <div className="main-content-group">

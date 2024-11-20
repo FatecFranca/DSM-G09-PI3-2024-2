@@ -97,7 +97,6 @@ const Dashboard = ({ userId }) => {
 
     fetchCategorias();
   }, [localStorage.getItem('userID')]);
-
   return (
     <div className="dashboard">
       <div className="menu-icon" onClick={toggleSidebar}>☰</div>
