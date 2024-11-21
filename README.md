@@ -17,9 +17,9 @@ Repositório do GRUPO 09 do Projeto Interdisciplinar do 3º semestre DSM 2024/2.
      npm start
 ### 3. Executar no terminal 'cd back-end':
 #### Dentro do diretório back-end execute:
-     npm install
+     npx install
      npx prisma init (se necessário)
-     npm run dev
+     npx run dev
 ### 4. A página será aberta em seu navegador.
 #### Crie um usuário em registre-se e faça login. Após esses passos cadastre transações e outros conteúdos para usufluir todas as funções da aplicação.
 
