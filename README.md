@@ -10,15 +10,18 @@ Repositório do GRUPO 09 do Projeto Interdisciplinar do 3º semestre DSM 2024/2.
 
 ## Orientações para rodar o App Web na máquina
 
-1. Clonar o projeto
-2. Executar no terminal 'cd front-end':
+### 1. Clonar o projeto
+### 2. Executar no terminal 'cd front-end':
+#### Dentro do diretório front-end execute:
      npm install
      npm start
-3. Executar no terminal 'cd back-end':
+### 3. Executar no terminal 'cd back-end':
+#### Dentro do diretório back-end execute:
      npm install
      npx prisma init (se necessário)
      npm run dev
-4. A página será aberta em seu navegador.
+### 4. A página será aberta em seu navegador.
+#### Crie um usuário em registre-se e faça login. Após esses passos cadastre transações e outros conteúdos para usufluir todas as funções da aplicação.
 
 
    
